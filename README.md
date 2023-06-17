@@ -10,7 +10,7 @@ The dataset consists of
 The dataset is primarily intended to be used in the development of systems to automatically measure the relative pose between the camera and the wall; systems to identify the location where the next curtain wall module should be installed; and related user interfaces.
 
 ## Documentation
-Please see the pdf.
+Please see [the user guide](./UserGuide.pdf).
 
 ## Citation
 Please cite this work as
