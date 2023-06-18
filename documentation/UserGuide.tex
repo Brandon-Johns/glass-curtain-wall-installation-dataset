@@ -4,6 +4,7 @@
 %****************************************
 \documentclass[11pt]{article}
 \usepackage[margin=2cm, a4paper]{geometry} % Margins
+\usepackage[T1]{fontenc}
 \usepackage{lmodern} % Solves some font availability problems
 
 % Paragraph formatting
@@ -62,6 +63,7 @@
 % Citations & Bibliography
 %****************************************
 \usepackage[style=numeric, sorting=none, isbn=false, url=true, sortcites=true]{biblatex}
+\renewcommand*{\bibfont}{\small}
 \addbibresource{bib/bibliography.bib}
 
 % Figure & table ref
@@ -328,6 +330,13 @@ To run:
 
 Information on the supporting classes can be obtained with the \code{help} command.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Citation}
+Please cite this work as:
+
+\fullcite{BJ-05}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -15,7 +15,13 @@ Please see [the user guide](./UserGuide.pdf).
 ## Citation
 Please cite this work as
 ```bibtex
-(todo)
+@Dataset{citeKey,
+  author = {Johns, Brandon and Abdi, Elahe and Arashpour, Mehrdad},
+  doi    = {10.26180/23538198},
+  title  = {Glass Curtain Wall Installation Dataset},
+  url    = {https://github.com/Brandon-Johns/glass-curtain-wall-installation-dataset},
+  year   = {2023},
+}
 ```
 
 ## Acknowledgments
