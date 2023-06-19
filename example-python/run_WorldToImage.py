@@ -20,7 +20,7 @@
 # OUTPUT:
 #   The input point is drawn on the image.
 
-import matplotlib
+import matplotlib.pyplot
 import numpy
 
 from CVm_T import CVm_T
@@ -89,11 +89,11 @@ T_C_W = data.ImportMocap_relCamera(imNum)
 I = data.ImportImage(imNum)
 
 fig, ax = matplotlib.pyplot.subplots()
-fig.dpi=300
+fig.dpi = 300
 ax.imshow(I)
 
 for point in points:
     [u_d, v_d] = WorldToImage(cal, T_C_W, point)
     ax.plot(u_d, v_d, 'x', markersize=8)
 
-
+matplotlib.pyplot.show()
