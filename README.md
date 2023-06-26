@@ -35,3 +35,5 @@ This research was supported by an Australian Government Research Training Progra
 This work is distributed under the [BSD-3-Clause License](./LICENSE.txt)
 
 The dataset, user guide, and documentation are distributed under the [Creative Commons CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/)
+
+The Building 4.0 CRC makes no warranty with regard to the accuracy of the information provided and will not be liable if the information is inaccurate, incomplete or out of date nor be liable for any direct or indirect damages arising from its use. The contents of this publication should not be used as a substitute for seeking independent professional advice.
