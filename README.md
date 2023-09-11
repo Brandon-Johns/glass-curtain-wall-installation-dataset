@@ -24,6 +24,20 @@ Please cite this work as
 }
 ```
 
+This work is companion to [our publication](https://doi.org/10.1016/j.measurement.2023.113459)
+```bibtex
+@Article{citeKey,
+  author  = {Brandon Johns and Elahe Abdi and Mehrdad Arashpour},
+  journal = {Measurement},
+  title   = {Crane payload localisation for curtain wall installation: A markerless computer vision approach},
+  year    = {2023},
+  issn    = {0263-2241},
+  pages   = {113459},
+  volume  = {221},
+  doi     = {10.1016/j.measurement.2023.113459},
+}
+```
+
 (Optional) If you find this work to be useful, please message me and share how you used it. I'd love to hear about it. 
 You can find me here: [twitter](https://twitter.com/BrandonJohns96), [linkedin](https://www.linkedin.com/in/brandon-johns-6bab7815a).
 

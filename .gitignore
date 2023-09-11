@@ -20,6 +20,9 @@ Thumbs.db
 ######################################################
 # Latex
 ###########################
+# Intermediate metadata file used by package pdfx
+*.xmpdata
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

@@ -1,22 +1,111 @@
 
+%%********************************************************************************
+%% Metadata for package pdfx
+%% See: https://webpages.tuni.fi/latex/pdfa-guide.pdf
+%%****************************************
+\begin{filecontents*}[overwrite]{\jobname.xmpdata}
+    \Title{Glass Curtain Wall Installation Dataset}
+    \Author{Brandon Johns\sep Elahe Abdi\sep Mehrdad Arashpour}
+    \Language{en-AU}
+    \Subject{}
+    \Keywords{}
+    \Publisher{Monash University}
+    \PublicationType{Dataset}
+\end{filecontents*}
+
+
 %********************************************************************************
 % Core headers
 %****************************************
 \documentclass[11pt]{article}
-\usepackage[margin=2cm, a4paper]{geometry} % Margins
+\usepackage[utf8]{inputenc}
+\usepackage[australian]{babel}
+
+%% PDF/A compliance
+\usepackage{colorprofiles}
+\usepackage[a-2u,mathxmp]{pdfx}
+
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} % Solves some font availability problems
 
-% Paragraph formatting
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1ex}
+\usepackage{xcolor}
+\definecolor{brandonblue}{RGB}{0,0,192}  %% Colour for hyperlinks
+\definecolor{brandondarkgrey}{RGB}{25,25,25}  %% Colour for footer
+\definecolor{brandonlightgray}{gray}{0.9} %% Background colour for code
 
-\usepackage[utf8]{inputenc}
+
+%********************************************************************************
+% Page dimensions, margins, line spacing, header, footer, headings
+%****************************************
+\usepackage{setspace}
+\usepackage[
+  a4paper,
+  hmargin=20mm,
+  vmargin=15mm,
+  includeheadfoot, %% Contain within header and footer within the margins
+  nohead,
+]{geometry}
+
+%% Line and paragraph spacing
+\raggedbottom
+\setstretch{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+\makeatletter
+\setlength{\topskip}{1\topskip \@plus 5\p@}
+\makeatother
 
 \usepackage{titlesec} % Heading formatting (title, section, etc.)
 \titleformat{\section}[block]{\normalfont\bfseries\Large}{\thesection.}{0.5em}{}
 \titlespacing*{\section}{0em}{1ex}{-1ex}
 \titlespacing*{\subsection}{0em}{1ex}{-1ex}
+\renewcommand{\bottomtitlespace}{8\baselineskip} % Minimum distance between a section heading and the bottom of a page
+
+\usepackage{fancyhdr}
+\fancyhfinit{\color{brandondarkgrey}} %% Change colour of header & footer
+
+
+%********************************************************************************
+% Text formatting, paragraph pagination
+%****************************************
+\usepackage[lining]{nunito} % Font choice
+
+\hyphenpenalty=10000 %% Prevent hyphenation (Part 1/2)
+\exhyphenpenalty=10000 %% Prevent hyphenation (Part 2/2)
+\doublehyphendemerits=10000 %% No consecutive line hyphens.
+\brokenpenalty=10000 %% No broken words across columns/pages.
+\widowpenalty=9999 %% Almost no widows at bottom of page.
+\clubpenalty=9999 %% Almost no orphans at top of page.
+\interfootnotelinepenalty=9999 %% Almost never break footnotes.
+
+\emergencystretch 3em %% Having disabled hyphenation, drop long words to the next line instead of overflowing
+\hfuzz=2.0em %% Suppress warnings for \hbox overflow ("overfull \hbox") by up to given length
+\hbadness=4000 %% range=[0,10000] Suppress warnings for underfull \hbox up to given badness level
+
+\setlength{\footnotesep}{1\baselineskip} %% Space between footnotes
+\setlength{\skip\footins}{1\baselineskip} %% Space between the text body and the footnotes
+
+%% Hyperlinks
+\hypersetup{pdfpagemode={UseNone},pdfstartview={FitV},pdfpagelayout={SinglePage},unicode,bookmarksopen=false,colorlinks,allcolors={brandonblue},breaklinks=true} % Hyperlinks
+%% (Part of hyperref) When setting metadata and such, replace instances of "\\" with " "
+\pdfstringdefDisableCommands{\let\\\space}
+
+
+%********************************************************************************
+%% Float pagination
+%****************************************
+%% https://robjhyndman.com/hyndsight/latex-floats/index.html
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\dbltopfraction}{.85}
+\renewcommand{\floatpagefraction}{0.75}
+\renewcommand{\dblfloatpagefraction}{.75}
+\setcounter{topnumber}{9}
+\setcounter{bottomnumber}{9}
+\setcounter{totalnumber}{20}
+\setcounter{dbltopnumber}{9}
+
 
 %********************************************************************************
 % Maths
@@ -27,16 +116,28 @@
 \usepackage{tensor} % left subscripts / superscripts
 \usepackage{textcomp, gensymb} % Symbol: \degree
 
+
 %********************************************************************************
 % Images & Tables
 %****************************************
 \usepackage{graphicx}
 \usepackage{placeins} % \FloatBarrier
-\usepackage{caption} % Improvements to figures, extends functionality with more options
+
+% Improvements to figures, extends functionality with more options
+\usepackage[
+  justification=centerlast,
+  font={normalsize,stretch=1.3},
+  labelfont={bf},
+]{caption}
+\setlength{\captionmargin}{20pt}
+
 
 %********************************************************************************
 % Formatted Blocks of Text
 %****************************************
+\usepackage{enumitem} %% More control of lists
+\setlist{topsep=0pt,beginpenalty=10000,first=\interlinepenalty10000}
+
 \usepackage{fvextra} % \Verb for code blocks
 \usepackage{csquotes} % Block quotations
 \usepackage{changepage} % Change margins for only a section
@@ -44,38 +145,32 @@
 
 % Code blocks
 % Using \verb allows underscores, single quotes, etc. but it doesn't play nice inside of other environments
-\usepackage{xcolor}
-\definecolor{bj-light-gray}{gray}{0.9}
-\newcommand{\code}[1]{\colorbox{bj-light-gray}{\Verb{#1}}}
+\newcommand{\code}[1]{\colorbox{brandonlightgray}{\Verb{#1}}}
 
-%********************************************************************************
-% Text Modification
-%****************************************
-\renewcommand{\familydefault}{\sfdefault} % Change to font: sans serif
-\hyphenpenalty=10000 % prevent hyphenation (Part 1/2)
-\exhyphenpenalty=10000 % prevent hyphenation (Part 2/2)
-\hfuzz=2.0em % Suppress warnings for \hbox overflow ("overfull \hbox") by up to given length
-\hbadness=2000 % range=[0,10000] Suppress warnings for underfull \hbox up to given badness level
-
-\usepackage[colorlinks=true, allcolors=blue]{hyperref} % Hyperlinks
 
 %********************************************************************************
 % Citations & Bibliography
 %****************************************
-\usepackage[style=numeric, sorting=none, isbn=false, url=true, sortcites=true]{biblatex}
+\usepackage[style=numeric, sorting=none, isbn=false, url=true, sortcites=true, maxbibnames=99]{biblatex}
 \renewcommand*{\bibfont}{\small}
+
+%% Prevent "et al." in \fullcite https://tex.stackexchange.com/a/267089
+\preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
+
 \addbibresource{bib/bibliography.bib}
 
 % Figure & table ref
-\renewcommand{\figref}[1]{Fig.~\ref{#1}}
+\renewcommand{\figref}[1]{Figure~\ref{#1}}
 \newcommand{\tbref}[1]{Table~\ref{#1}}
 \renewcommand{\secref}[1]{Section~\ref{#1}}
 \renewcommand{\appref}[1]{Appendix~\ref{#1}}
+
 
 %********************************************************************************
 % Other
 %****************************************
 \usepackage{datetime2} % Display the date of pdf compilation as YYYY-MM-DD with the command "\date"
+
 
 %********************************************************************************
 % Command definition
@@ -83,14 +178,6 @@
 \usepackage{xargs} % Define commands with multiple optional arguments as key values pairs
 
 %%% Maths
-% Position Vector (measure frame, point name, exponent)
-\newcommandx*{\pos}[3][3={}]{
-    \tensor*[^{#1}] {\mathbf{p}} {^{#3}_{#2}}
-}
-% Transformation Matrix (new frame, old frame)
-\newcommandx*{\transformation}[3][3={}]{
-    \tensor*[^{#1}_{#2}] {\mathbf{T}} {^{#3}}
-}
 % Frame(frame)
 % NOTE: This is matched to the latex used in figure "CWM installation detailed v3"
 % Using inkscape: Extensions > Render > Formula (pdflatex)
@@ -103,6 +190,11 @@
 % Start
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\pagestyle{fancy}
+\fancyhf{}%% Clear header and footer
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\footnotesize \thepage}
+
 % Title with double rule
 %   Lengths: r1=1.6, gap=1.6, r2=0.4, txtGap=0.5\baselineskip
 \begin{center}
@@ -124,7 +216,7 @@
 
 \begin{adjustwidth}{0cm}{0cm}
     \vspace*{-0.5\baselineskip}
-    { \footnotesize \scshape Document Version \today }
+    { \footnotesize Document Version \today }
 \end{adjustwidth}
 
 \vspace*{-0.8\baselineskip}
@@ -157,15 +249,14 @@ The dataset is primarily intended to be used in the development of systems to au
 \section*{Data Acquisition}
 The dataset was created with a 1:25 scale model (\figref{fig:ExpAndCW}). The CWMs were comprised of plain float glass in a mill-finish aluminium frame. The side of the glass that faces the building interior was coated with opaque black vinyl to emulate the effect of a coating that is commonly applied to architectural glass. The concrete building floors and columns were grey painted wood. It was noted that paint was more reflective than actual concrete. The hook-block was 3D printed plastic, and the hoist rope was twine. A Basler ace acA2040-55uc camera with a 6mm fixed focal length lens was used to take the images. The camera was set to be in focus when at the median distance.
 
-\begin{figure}[t]
+An OptiTrack motion capture system of four FLEX 13 cameras was used to locate $19$mm markers attached to the hook-block and the curtain wall. This motion capture system is not generally intended for outdoor use, hence, the accuracy of the measurements was low. The ground and the area around the markers was covered with black EVA foam mats to improve the system accuracy. Still, the majority of captured images had to be discarded due to momentary loss of tracking at the time when the image was taken. The OptiTrack system self-reported its precision as between $0.2$mm and $10$mm per object, varying with the severity of the lighting conditions.
+
+\begin{figure}[h]
 	\centering
 	\centerline{\includegraphics[width=1\columnwidth,keepaspectratio]{fig/ExperimentalSetupAndCW.pdf}}
 	\caption{Left: The scenario that the dataset represents. Right: The data collection setup.}
     \label{fig:ExpAndCW}
 \end{figure}
-
-An OptiTrack motion capture system of four FLEX 13 cameras was used to locate $19$mm markers attached to the hook-block and the curtain wall. This motion capture system is not generally intended for outdoor use, hence, the accuracy of the measurements was low. The ground and the area around the markers was covered with black EVA foam mats to improve the system accuracy. Still, the majority of captured images had to be discarded due to momentary loss of tracking at the time when the image was taken. The OptiTrack system self-reported its precision as between $0.2$mm and $10$mm per object, varying with the severity of the lighting conditions.
-
 
 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -336,12 +427,34 @@ Information on the supporting classes can be obtained with the \code{help} comma
 \section*{Citation}
 Please cite this work as:
 
-\fullcite{BJ-05}
+\begin{adjustwidth}{2em}{2em}
+\begin{refsection}
+    \fullcite{BJ-05}
+\end{refsection}
+\end{adjustwidth}
+
+This work is companion to:
+
+\begin{adjustwidth}{2em}{2em}
+\begin{refsection}
+    \fullcite{BJ-06}
+\end{refsection}
+\end{adjustwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgments}
 This research was supported by an Australian Government Research Training Program (RTP) Scholarship. This research is supported by Building 4.0 CRC. The support of the Commonwealth of Australia through the Cooperative Research Centre Programme is acknowledged.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{License}
+This work is distributed under the BSD-3-Clause License. See the accompanying license file for details.
+
+The dataset, user guide, and documentation are distributed under the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons CC BY 4.0 license}
+
+The Building 4.0 CRC makes no warranty with regard to the accuracy of the information provided and will not be liable if the information is inaccurate, incomplete or out of date nor be liable for any direct or indirect damages arising from its use. The contents of this publication should not be used as a substitute for seeking independent professional advice.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
